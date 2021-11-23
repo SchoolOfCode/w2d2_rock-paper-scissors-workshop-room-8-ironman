@@ -10,18 +10,18 @@ let score = {
   losses: 0,
 };
 
-return;
+//return;
 
-function isPlayerMoveValid(playerMove) {
-  if (
-    playerMove.toLowerCase() === "rock" ||
-    playerMove.toLowerCase() === "paper" ||
-    playerMove.toLowerCase() === "scissors"
-  ) {
-    return true;
-  }
-  return false;
-}
+// function isPlayerMoveValid(playerMove) {
+//   if (
+//     playerMove.toLowerCase() === "rock" ||
+//     playerMove.toLowerCase() === "paper" ||
+//     playerMove.toLowerCase() === "scissors"
+//   ) {
+//     return true;
+//   }
+//   return false;
+// }
 
 function getComputerMove() {
   // Get a random number between 0 and less than 1
@@ -107,45 +107,139 @@ function displayScore() {
   );
 }
 
+
+
 // Before we start the game loop, get a player's username
 let username = prompt("What should we call you?");
 
+//Task 1
+const buttonRock = document.querySelector("#rock-button");
+const buttonPaper = document.querySelector("#paper-button");
+const buttonScissors = document.querySelector("#scissors-button");
+
+var playerMove;
+
+function handleClickRock() {
+  globalThis.playerMove = "rock";
+  //console.log("Rock Testing");
+  
+}
+
+function handleClickPaper() {
+  globalThis.playerMove = "paper";
+}
+
+function handleClickScissors() {
+  globalThis.playerMove = "scissors";
+}
+
+
+
 // While (true) to loop forever
-while (true) {
+
   // Get player move with prompt
-  let playerMove = prompt(`Your move ${username}. rock, paper or scissors?`);
+  //let playerMove = prompt(`Your move ${username}. rock, paper or scissors?`);
+    
+  
+  //Task 1
+    // //Click the rock button on browser will choose rock for player
+    
+      buttonRock.addEventListener("click", handleClickRock);
+    // //Click the paper button on browser will choose rock for player
+      buttonPaper.addEventListener("click", handleClickPaper);
+    // //Click the scissors button on browser will choose rock for player
+      buttonScissors.addEventListener("click", handleClickScissors);
+
+
 
   // Validate playerMove
-  let isValidPlayerMove = isPlayerMoveValid(playerMove);
+  //let isValidPlayerMove = isPlayerMoveValid(playerMove);
   // If we do not have a valid player move, continue the loop
   // which means to skip this iteration and go to the next one
   // This is different to breaking the loop
-  if (!isValidPlayerMove) {
-    alert("Incorrect player move, please type either rock, paper or scissors");
-    continue;
-  }
+  // if (!isValidPlayerMove) {
+  //   alert("Incorrect player move, please type either rock, paper or scissors");
+  //   continue;
+  // }
+  
 
+  document.getElementById('rock-button').onclick = function() {
   // Get computer move from getComputerMove function
-  let computerMove = getComputerMove();
+    let computerMove = getComputerMove();
 
-  // Get the winner based on what playerMove and computerMove are
-  // result is either 1 (player win), 0 (draw) or -1 (player loss)
-  let result = getWinner(playerMove, computerMove);
+    // Get the winner based on what playerMove and computerMove are
+    // result is either 1 (player win), 0 (draw) or -1 (player loss)
+    let result = getWinner(playerMove, computerMove);
 
-  // Display the result of this round to the user
-  displayResult(result, playerMove, computerMove);
+    // Display the result of this round to the user
+    displayResult(result, playerMove, computerMove);
 
-  // Call update score to update the score object declared at the top based
-  // based on the result of getWinner
-  updateScore(result);
+    // Call update score to update the score object declared at the top based
+    // based on the result of getWinner
+    updateScore(result);
 
-  // Display score details to player
-  displayScore();
+    // Display score details to player
+    displayScore();
 
-  // Ask if the player wants to keep playing
-  let keepPlaying = confirm(`Do you want to keep playing ${username}?`);
-  if (!keepPlaying) {
-    // If false, break the while loop so we stop the game
-    break;
-  }
-}
+    // Ask if the player wants to keep playing
+    let keepPlaying = confirm(`Do you want to keep playing ${username}?`);
+    if (!keepPlaying) {
+      // If false, break the while loop so we stop the game
+      
+    } 
+  
+  };
+
+  document.getElementById('paper-button').onclick = function() {
+    // Get computer move from getComputerMove function
+      let computerMove = getComputerMove();
+  
+      // Get the winner based on what playerMove and computerMove are
+      // result is either 1 (player win), 0 (draw) or -1 (player loss)
+      let result = getWinner(playerMove, computerMove);
+  
+      // Display the result of this round to the user
+      displayResult(result, playerMove, computerMove);
+  
+      // Call update score to update the score object declared at the top based
+      // based on the result of getWinner
+      updateScore(result);
+  
+      // Display score details to player
+      displayScore();
+  
+      // Ask if the player wants to keep playing
+      let keepPlaying = confirm(`Do you want to keep playing ${username}?`);
+      if (!keepPlaying) {
+        // If false, break the while loop so we stop the game
+        
+      } 
+    
+    };
+
+    document.getElementById('scissors-button').onclick = function() {
+      // Get computer move from getComputerMove function
+        let computerMove = getComputerMove();
+    
+        // Get the winner based on what playerMove and computerMove are
+        // result is either 1 (player win), 0 (draw) or -1 (player loss)
+        let result = getWinner(playerMove, computerMove);
+    
+        // Display the result of this round to the user
+        displayResult(result, playerMove, computerMove);
+    
+        // Call update score to update the score object declared at the top based
+        // based on the result of getWinner
+        updateScore(result);
+    
+        // Display score details to player
+        displayScore();
+    
+        // Ask if the player wants to keep playing
+        let keepPlaying = confirm(`Do you want to keep playing ${username}?`);
+        if (!keepPlaying) {
+          // If false, break the while loop so we stop the game
+          
+        } 
+      
+      };
